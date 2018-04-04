@@ -10,7 +10,7 @@ class CaptionSort:
     def __init__(self, master):
         self.master = master
         self.master.title('Sort Images by Exif Caption')
-        self.master.resizable(false, false)
+        self.master.resizable(False, False)
 
         self.mainframe = ttk.Frame(self.master)
         self.mainframe.pack(padx = 5, pady = 5)
@@ -19,13 +19,13 @@ class CaptionSort:
         self.src_entry = ttk.Entry(self.mainframe, width = 54)
         self.src_entry.grid(row = 1, column = 0, sticky = 'e')
         self.src_entry.insert(0,'./images')
-        ttk.Button(self.mainframe, text = 'Browse...', command = self.browse_src_callback).grid(row = 1, column = 1, sticky = 'w')
+        ttk.Button(self.mainframe, text = 'Browse...', command = self.browse_src_callback).grid(row = 1, column = 1, sticky = 'w', padx = 5)
 
         ttk.Label(self.mainframe, text = 'Destination Directory:').grid(row = 3, column = 0, sticky = 'w')
         self.dest_entry = ttk.Entry(self.mainframe, width = 54)
         self.dest_entry.grid(row = 4, column = 0, sticky = 'e')
         self.dest_entry.insert(0, './sorted')
-        ttk.Button(self.mainframe, text = 'Browse...', command = self.browse_dest_callback).grid(row = 4, column = 1, sticky = 'w')
+        ttk.Button(self.mainframe, text = 'Browse...', command = self.browse_dest_callback).grid(row = 4, column = 1, sticky = 'w', padx = 5)
 
         self.copy_var = IntVar()
         self.copy_var.set(1)
@@ -45,14 +45,6 @@ class CaptionSort:
         path = filedialog.askdirectory(initialdir = self.dest_entry.get())
         self.dest_entry.delete(0, END)
         self.dest_entry.insert(0, path)
-
-
-def main():
-    root = Tk()
-    gui = CaptionSort(root)
-    root.mainloop()
-
-if __name__ == "__main__": main()
 
 
     def sort_callback(self):
@@ -75,7 +67,7 @@ if __name__ == "__main__": main()
         for path in image_paths:
             if path.endswith('.jpg'):
                 tag = '-Caption-Abstract'
-            elif path.endswith('.png')
+            elif path.endswith('.png'):
                 tag = '-Description'
             try: # use ExifTool from http://www.sno.phy.queensu.ca/~phil/exiftool/
                 output = subprocess.check_output(['exiftool', tag, path])
@@ -116,3 +108,9 @@ if __name__ == "__main__": main()
                         else:
                             print('Moved {} to {}'.format(file, keypath))
                             sorted_count += 1
+def main():
+    root = Tk()
+    gui = CaptionSort(root)
+    root.mainloop()
+
+if __name__ == "__main__": main()
