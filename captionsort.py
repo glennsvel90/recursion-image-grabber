@@ -27,6 +27,18 @@ class CaptionSort:
         self.dest_entry.insert(0, './sorted')
         ttk.Button(self.mainframe, text = 'Browse...', command = self.browse_dest_callback).grid(row = 4, column = 1, sticky = 'w')
 
+        self.copy_var = IntVar()
+        self.copy_var.set(1)
+        ttk.Checkbutton(self.mainframe, text = 'Copy Files', variable = self.copy_var).grid(row = 5, column = 0, columnspan = 2)
+
+        ttk.Button(self.mainframe, text = 'Sort Images', command = self.sort_callback).grid(row = 6, column = 0, columnspan = 2)
+
+
+
+    def browse_src_callback(self):
+        path = filedialog.askdirectory(initialdir = self.src_entry.get())
+        self.src_entry.delete
+
 
 
     def sort_callback(self):
