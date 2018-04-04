@@ -6,6 +6,29 @@ from tkinter import ttk, filedialog, messagebox
 
 class CaptionSort:
 
+
+    def __init__(self, master):
+        self.master = master
+        self.master.title('Sort Images by Exif Caption')
+        self.master.resizable(false, false)
+
+        self.mainframe = ttk.Frame(self.master)
+        self.mainframe.pack(padx = 5, pady = 5)
+
+        ttk.Label(self.mainframe, text = 'Source Directory:').grid(row = 0, column = 0, sticky = 'w')
+        self.src_entry = ttk.Entry(self.mainframe, width = 54)
+        self.src_entry.grid(row = 1, column = 0, sticky = 'e')
+        self.src_entry.insert(0,'./images')
+        ttk.Button(self.mainframe, text = 'Browse...', command = self.browse_src_callback).grid(row = 1, column = 1, sticky = 'w')
+
+        ttk.Label(self.mainframe, text = 'Destination Directory:').grid(row = 3, column = 0, sticky = 'w')
+        self.dest_entry = ttk.Entry(self.mainframe, width = 54)
+        self.dest_entry.grid(row = 4, column = 0, sticky = 'e')
+        self.dest_entry.insert(0, './sorted')
+        ttk.Button(self.mainframe, text = 'Browse...', command = self.browse_dest_callback).grid(row = 4, column = 1, sticky = 'w')
+
+
+
     def sort_callback(self):
         #create an empty list to store the file paths as you examine them
         image_paths = []
