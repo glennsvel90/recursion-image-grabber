@@ -37,8 +37,22 @@ class CaptionSort:
 
     def browse_src_callback(self):
         path = filedialog.askdirectory(initialdir = self.src_entry.get())
-        self.src_entry.delete
+        self.src_entry.delete(0, END)
+        self.src_entry.insert(0, path)
 
+
+    def browse_dest_callback(self):
+        path = filedialog.askdirectory(initialdir = self.dest_entry.get())
+        self.dest_entry.delete(0, END)
+        self.dest_entry.insert(0, path)
+
+
+def main():
+    root = Tk()
+    gui = CaptionSort(root)
+    root.mainloop()
+
+if __name__ == "__main__": main()
 
 
     def sort_callback(self):
