@@ -5,6 +5,15 @@ from tkinter import *
 from tkinter import ttk, filedialog, messagebox
 
 class CaptionSort:
+    """ Class to represent a sorting photos application program that is a gui. The program sorts photos by caption
+    
+    Methods:
+        browse_src_callback: used to make appear the source directory of where photos are examined from
+        browse_dest_callback: used to make appear the destination directory of where photos are placed after being sorted
+        sort_callback: used to recursively find photos within the source directory and then sort them by caption
+    """
+        
+        
 
 
     def __init__(self, master):
