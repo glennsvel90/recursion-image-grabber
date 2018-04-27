@@ -5,18 +5,11 @@ from tkinter import *
 from tkinter import ttk, filedialog, messagebox
 
 class CaptionSort:
-    """ Class to represent a sorting photos application program that is a gui. The program sorts photos by caption
-    
-    Methods:
-        browse_src_callback: used to make appear the source directory of where photos are examined from
-        browse_dest_callback: used to make appear the destination directory of where photos are placed after being sorted
-        sort_callback: used to recursively find photos within the source directory and then sort them by caption
-    """
-        
-        
-
+    """ Class to represent a sorting photos application program that is a gui. The program sorts photos by caption """
 
     def __init__(self, master):
+        """ initate the gui and load buttons functions """
+        
         self.master = master
         self.master.title('Sort Images by Exif Caption')
         self.master.resizable(False, False)
@@ -45,17 +38,23 @@ class CaptionSort:
 
 
     def browse_src_callback(self):
+        """ make appear the source directory of where photos are examined from """
+        
         path = filedialog.askdirectory(initialdir = self.src_entry.get())
         self.src_entry.delete(0, END)
         self.src_entry.insert(0, path)
 
     def browse_dest_callback(self):
+        """ make appear the destination directory of where photos are placed after being sorted """
+        
         path = filedialog.askdirectory(initialdir = self.dest_entry.get())
         self.dest_entry.delete(0, END)
         self.dest_entry.insert(0, path)
 
 
     def sort_callback(self):
+        """ recursively find photos within the source directory and then sort them by caption """
+        
         #create an empty list to store the file paths as you examine them
         image_paths = []
         # make a 3-element tuple when you start taking the source directory and walk along it, with dirpath:
